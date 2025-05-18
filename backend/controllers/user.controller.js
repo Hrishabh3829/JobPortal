@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { User } from "../models/user.model.js";
-import bcrypt from "bcryptjs"
+import bcrypt from "bcrypt"
 
 export const register = async (req, res) => {
     try {
@@ -39,7 +39,7 @@ export const register = async (req, res) => {
         res.status(500).json(
             {
                 message: "Internal server error.",
-                succes: false
+                success: false
             }
         )
 

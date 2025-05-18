@@ -22,13 +22,13 @@ const companySchema = mongoose.Schema({
         type: String
 
     },
-    userId:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'User',
-        required:true
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 
 
 
-},{timestamps:true},
+}, { timestamps: true },
 )
