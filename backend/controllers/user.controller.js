@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { User } from "../models/user.model.js";
-import bcrypt from "bcryptjs"
+import bcrypt from "bcrypt"
 
 export const register = async (req, res) => {
     try {
@@ -39,7 +39,7 @@ export const register = async (req, res) => {
         res.status(500).json(
             {
                 message: "Internal server error.",
-                succes: false
+                success: false
             }
         )
 
@@ -135,6 +135,7 @@ export const logout = async (req, res) => {
 
 
 export const updateProfile = async (req, res) => {
+   // console.log("BODY:", req.body);
     try {
         const { fullname, email, phoneNumber, bio, skills } = req.body;
         const file = req.file;
@@ -149,8 +150,9 @@ export const updateProfile = async (req, res) => {
 
         const skillsArray = skills.split(",");
 
+
         const userId = req.id;//middleware authetication
-        let user = await User.findById({ userId })
+        let user = await User.findById(userId)
 
         if (!user) {
             return res.status(400).json({
