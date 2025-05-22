@@ -1,3 +1,4 @@
+import { application } from "express"
 import { Application } from "../models/application.model.js"
 import { Job } from "../models/job.model.js"
 
@@ -123,23 +124,39 @@ export const getAplicants = async (req, res) => {
 
 
 
-export const updateStatus = async(req,res)=>{
+export const updateStatus = async (req, res) => {
     try {
-        const {status} = req.body
+        const { status } = req.body
         const applicationId = req.params.id
-        if(!status){
+        if (!status) {
             return res.status(400).json({
-                message:"Status is required",
-                success:false
+                message: "Status is required",
+                success: false
             })
         }
-        
+        //find the application by application ID
+        const application = await Application.findOne({ _id: applicationId })
+        if (!application) {
+            return res.status(404).json({
+                message: "Application not found",
+                success: false
+            })
+        }
+
+        //update status
+        application.status = status.tolowercase()
+        application.save()
+        return res.status(200).json({
+            message: "status updated successfully",
+            success: true
+        })
+
 
     } catch (error) {
         console.log(error)
         return res.status(500).json({
-            message:"Internal server error.",
-            success:false
+            message: "Internal server error.",
+            success: false
         })
     }
 }
