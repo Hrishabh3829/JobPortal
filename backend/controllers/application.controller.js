@@ -1,4 +1,4 @@
-import { application } from "express"
+
 import { Application } from "../models/application.model.js"
 import { Job } from "../models/job.model.js"
 
@@ -90,7 +90,7 @@ export const getAppliedJobs = async (req, res) => {
 
 
 //Admin dekhega ki kitne users ne apply kiya hai
-export const getAplicants = async (req, res) => {
+export const getApplicants = async (req, res) => {
     try {
         const jobId = req.params.id
         const job = await Job.findById({ jobId }).populate({
