@@ -113,7 +113,9 @@ export const getJobById = async (req, res) => {
 //how many jobs admin created till now
 export const getAdminJobs = async (req,res) => {
     try {
+        
         const adminId=req.id;
+       // console.log("Admin ID:", adminId);
         const jobs =await Job.find({created_by:adminId});
         if(!jobs){
             return res.status(404).json({

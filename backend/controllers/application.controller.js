@@ -15,14 +15,14 @@ export const applyJob = async (req, res) => {
 
         //check if the user is already applied
         const existingApplicant = await Application.findOne({ job: jobId, applicant: userId })
-        if (!existingApplicant) {
+        if (existingApplicant) {
             return res.status(400).json({
                 message: "You have already applied for this job",
                 success: false
             })
         }
 
-        const job = await Job.findById({ jobId })
+        const job = await Job.findById( jobId )
         if (!job) {
             return res.status(404).json({
                 message: "Job not found",
@@ -93,7 +93,8 @@ export const getAppliedJobs = async (req, res) => {
 export const getApplicants = async (req, res) => {
     try {
         const jobId = req.params.id
-        const job = await Job.findById({ jobId }).populate({
+        
+        const job = await Job.findById( jobId ).populate({
             path: 'applications',
             options: { sort: { createdAt: -1 } },
             populate: {
@@ -128,6 +129,7 @@ export const updateStatus = async (req, res) => {
     try {
         const { status } = req.body
         const applicationId = req.params.id
+        // console.log("ApplicationId",applicationId)
         if (!status) {
             return res.status(400).json({
                 message: "Status is required",
@@ -144,8 +146,8 @@ export const updateStatus = async (req, res) => {
         }
 
         //update status
-        application.status = status.tolowercase()
-        application.save()
+        application.status = status.toLowerCase()
+        await application.save()
         return res.status(200).json({
             message: "status updated successfully",
             success: true
