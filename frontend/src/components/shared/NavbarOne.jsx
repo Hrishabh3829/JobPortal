@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar"
-import { LogOut, User2 } from "lucide-react"
+import { LogIn, LogOut, User2 } from "lucide-react"
 
 
 
@@ -14,9 +14,9 @@ const NavbarOne = () => {
             <div className='flex items-center justify-between mx-auto max-w-5xl h-16'>
                 <div>
                     <Link to="/">
-                        <h1 className='text-2xl font-bold'>
-                            Job<span className='text-[#F83002]'>Portal</span>
-                        </h1>
+                        <span className="text-3xl font-semibold text-blue-400 tracking-wide">Job</span>
+                        <span className="text-4xl font-semibold text-purple-400 tracking-wide">Vista</span>
+
                     </Link>
                 </div>
                 <div className="flex items-center gap-12">
@@ -30,7 +30,7 @@ const NavbarOne = () => {
                             <div className="flex items-center gap-2">
                                 <Link to="/login">
                                     <Button className="bg-white text-black hover:bg-gray-100">
-                                        Login
+                                        Login<LogIn/>
                                     </Button>
                                 </Link>
                                 <Link to="/signup">
