@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 
-constant.js
+/src/utils/constant.js
