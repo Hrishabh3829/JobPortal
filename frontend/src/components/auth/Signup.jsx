@@ -72,8 +72,8 @@ export const Signup = () => {
   return (
     <div>
       <NavbarOne />
-      <div className='flex items-center justify-center mx-auto -mt-4'>
-        <form onSubmit={submitHandler} className=" rounded-md  my-10 w-140">
+      <div className='flex items-center justify-center mx-auto -mt-4 '>
+        <form onSubmit={submitHandler} className=" rounded-md  my-10 w-140 px-4 py-1 border border-sky-500">
           <h1 className="font-bold text-xl mb-5">SignUp!!</h1>
 
           <div className="flex flex-col space-y-4">
