@@ -4,7 +4,7 @@ import { AtSign, LogIn, Search } from 'lucide-react'
 
 export const Herosection = () => {
   return (
-    <div className='text-center'>
+    <div className='text-center -mt-7'>
       <div className='flex flex-col gap-5 my-10'>
         <span className=" mx-auto px-4 py-2 rounded-full bg-sky-100 text-sky-600 font-medium text-sm shadow-sm">
           Unlock your career

@@ -17,7 +17,7 @@ const category = [
 
 export const CategoryCarousel = () => {
     return (
-        <div className='-mt-5'>
+        <div className='-mt-8'>
             <Carousel className="w-full max-w-xl mx-auto my-20">
                 <CarouselContent >
                     {
