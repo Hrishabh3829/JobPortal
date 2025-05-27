@@ -3,6 +3,7 @@ import NavbarOne from './shared/NavbarOne'
 import { Herosection } from './Herosection'
 import { CategoryCarousel } from './CategoryCarousel'
 import { LatestJobs } from './LatestJobs'
+import { Footer } from './Footer'
 
 export const Home = () => {
   return (
@@ -11,6 +12,7 @@ export const Home = () => {
         <Herosection/>
         <CategoryCarousel/>
         <LatestJobs/>
+        <Footer/>
     </div>
   )
 }

@@ -13,14 +13,14 @@ export const LatestJobs = () => {
                     <h1 className='text-2xl font-bold text-blue-400'>
                         Top Picks for You
                     </h1>
-                    <span className='text-sky-100 font-bold animate-bounce'>
+                    <span className='text-sky-200 animate-bounce'>
                         <PandaIcon />
                     </span>
 
                 </div>
 
             </div>
-            <div className='-mt-10 grid grid-cols-3 gap-4 my-20 mx-40'>
+            <div className='-mt-10 grid grid-cols-3 gap-4 my-auto mx-40'>
                 {
                     randomJobs.slice(0,6).map((Item, index) => <LatestJobCards />)
                 }
