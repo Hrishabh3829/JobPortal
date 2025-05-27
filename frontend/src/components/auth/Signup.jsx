@@ -4,9 +4,10 @@ import { Label } from '@radix-ui/react-label'
 import { Input } from '@headlessui/react'
 import { RadioGroup } from '../ui/radio-group'
 import { Button } from '../ui/button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { USER_API_END_POINT } from '@/utils/constant'
+import { toast } from 'sonner'
 
 
 
@@ -15,12 +16,16 @@ export const Signup = () => {
 
   const [input, setInput] = useState({
     fullname: "",
-    gmail: "",
-    phonenumber: "",
+    email: "",
+    phoneNumber: "",
     password: "",
     role: "",
     file: ""
   })
+
+  const navigate = useNavigate()
+
+
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value })
   }
@@ -30,24 +35,29 @@ export const Signup = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("fullname",input.fullname);
-    formData.append("email",input.gmail);
-    formData.append("phoneNumber",input.phonenumber)
-    formData.append("password",input.password)
-    formData.append("role",input.role)
-    if(input.file){
-      formData.append("file",input.file)
+    formData.append("fullname", input.fullname);
+    formData.append("email", input.email);
+    formData.append("phoneNumber", input.phoneNumber)
+    formData.append("password", input.password)
+    formData.append("role", input.role)
+    if (input.file) {
+      formData.append("file", input.file)
     }
     try {
 
-      const res = await axios.post(`${USER_API_END_POINT}/register`,formData,{
-        headers:{
-          "Content-Type":"multipart/form-data"
+      const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
         },
-        withCredentials:true,        
+        withCredentials: true,
       })
+      if (res.data.success) {
+        navigate("/login");
+        toast.success(res.data.message)
+      }
     } catch (error) {
       console.log(error)
+      toast.error(error.response.data.message)
     }
   }
 
@@ -76,8 +86,9 @@ export const Signup = () => {
               <Label>Gmail</Label>
               <Input
                 type="email"
-                value={input.gmail}
-                name="gmail"
+                value={input.email}
+                name="email"
+                autoComplete="username"
                 onChange={changeEventHandler}
                 placeholder="Zap mail ⚡"
                 className="hover:bg-sky-100 hover:text-sky-800 transition-colors placeholder:text-gray-400"
@@ -88,8 +99,9 @@ export const Signup = () => {
               <Label>Phone Number</Label>
               <Input
                 type="text"
-                value={input.phonenumber}
-                name="phonenumber"
+                value={input.phoneNumber}
+                name="phoneNumber"
+                autoComplete="username"
                 onChange={changeEventHandler}
                 placeholder="Digits only ☎️"
                 className="hover:bg-sky-100 hover:text-sky-800 transition-colors placeholder:text-gray-400"
@@ -102,6 +114,7 @@ export const Signup = () => {
                 type="password"
                 value={input.password}
                 name="password"
+                autoComplete="current-password"
                 onChange={changeEventHandler}
                 placeholder="Code word 🕵️"
                 className="hover:bg-sky-100 hover:text-sky-800 transition-colors placeholder:text-gray-400"
