@@ -3,6 +3,7 @@ import NavbarOne from "./components/shared/NavbarOne.jsx"
 import { Login } from "./components/auth/Login"
 import { Signup } from "./components/auth/Signup"
 import { Home } from "./components/Home"
+import { Jobs } from "./components/auth/Jobs.jsx"
 
 
 
@@ -19,6 +20,10 @@ const appRouter =createBrowserRouter([
   {
     path:'/signup',
     element:<Signup/>
+  },
+  {
+    path:'/jobs',
+    element:<Jobs/>
   }
 ])
 

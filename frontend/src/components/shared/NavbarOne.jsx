@@ -21,16 +21,22 @@ const NavbarOne = () => {
                 </div>
                 <div className="flex items-center gap-12">
                     <ul className='flex font-medium items-center gap-5'>
-                        <li>Home</li>
-                        <li>Jobs</li>
-                        <li>Browse</li>
+                        <Link to="/">
+                            <li>Home</li>
+                        </Link >
+                        <Link to="/jobs">
+                            <li>Jobs</li>
+                        </Link>
+                        <Link to="/browse">
+                            <li>Browse</li>
+                        </Link>
                     </ul>
                     {
                         !user ? (
                             <div className="flex items-center gap-2">
                                 <Link to="/login">
                                     <Button className="bg-white text-black hover:bg-gray-100">
-                                        Login<LogIn/>
+                                        Login<LogIn />
                                     </Button>
                                 </Link>
                                 <Link to="/signup">
