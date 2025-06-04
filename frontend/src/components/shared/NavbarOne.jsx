@@ -4,11 +4,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar"
 import { LogIn, LogOut, User2 } from "lucide-react"
+import { useSelector } from "react-redux"
+
+
 
 
 
 const NavbarOne = () => {
-    const user = false
+
+    const {user}=useSelector(store=>store.auth)
+
     return (
         <div className='bg-white'>
             <div className='flex items-center justify-between mx-auto max-w-5xl h-16'>
@@ -70,7 +75,8 @@ const NavbarOne = () => {
                                             <div className="flex flex-col gap-3 my-2">
                                                 <div className="flex flex-row gap-6">
                                                     <User2 className="flex" />
-                                                    <Button variant="link" className="p-0 h-auto text-sm">View Profile</Button>
+                                                    <Button variant="link" className="p-0 h-auto text-sm">
+                                                        <Link to="/profile">View Profile</Link></Button>
                                                 </div>
                                                 <div className="flex flex-row gap-6">
                                                     <LogOut className="flex" />
