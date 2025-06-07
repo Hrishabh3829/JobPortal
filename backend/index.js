@@ -20,10 +20,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 const corsOptions = {
-    origin: "http://localhost:5173",
-    credentials: true
+    origin: [
+        "https://rn8l9kd4-5173.inc1.devtunnels.ms",
+        "http://localhost:5173" // For local development
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }
 app.use(cors(corsOptions))
+// const corsOptions = {
+//     origin: "http://localhost:5173",
+//     credentials: true
+// }
+// app.use(cors(corsOptions))
 
 
 const PORT = process.env.PORT || 3000;
