@@ -4,8 +4,12 @@ import { Avatar, AvatarImage } from '@radix-ui/react-avatar'
 import React from 'react'
 import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
+import { useNavigate } from 'react-router-dom'
 
 export const Job = () => {
+
+    const navigate = useNavigate()
+    const jobId="7uyerwu68935"
     return (
         <div className='p-6 rounded-md drop-shadow-xl bg-white border border-sky-200'>
             <div className='flex items-center justify-between'>
@@ -38,7 +42,7 @@ export const Job = () => {
                 <Badge className='text-blue-700 font-bold' variant='ghost'>24 LPA</Badge>
             </div>
             <div className='flex items-center gap-4 mt-4'>
-                <Button variant="outline" className="rounded-full bg-sky-100">Details</Button>
+                <Button variant="outline" className="rounded-full bg-sky-100" onClick={() => navigate(`/description/${jobId}`)}>Details</Button>
                 <Button variant="outline" className="rounded-full bg-sky-200">Save for later</Button>
             </div>
 
