@@ -137,7 +137,7 @@ export const logout = async (req, res) => {
 export const updateProfile = async (req, res) => {
     // console.log("BODY:", req.body);
     try {
-        const { fullname, email, phoneNumber, bio, skills } = req.body;
+        const { fullname, phoneNumber, bio, skills } = req.body;
         const file = req.file;
 
 
@@ -151,6 +151,7 @@ export const updateProfile = async (req, res) => {
 
 
         const userId = req.id;//middleware authetication
+        // console.log(userId)
         let user = await User.findById(userId)
 
         if (!user) {
@@ -164,7 +165,7 @@ export const updateProfile = async (req, res) => {
 
 
         if (fullname) user.fullname = fullname
-        if (email) user.email = email
+        // if (email) user.email = email
         if (phoneNumber) user.phoneNumber = phoneNumber
         if (bio) user.profile.bio = bio
         if (skills) user.profile.skills = skillsArray
@@ -176,7 +177,7 @@ export const updateProfile = async (req, res) => {
         user = {
             _id: user._id,
             fullname: user.fullname,
-            email: user.email,
+            // email: user.email,
             phoneNumber: user.phoneNumber,
             role: user.role,
             profile: user.profile

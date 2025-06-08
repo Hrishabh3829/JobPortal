@@ -22,11 +22,11 @@ app.use(cookieParser())
 const corsOptions = {
     origin: [
         "https://rn8l9kd4-5173.inc1.devtunnels.ms",
-        "http://localhost:5173" // For local development
+        "http://localhost:5173" 
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"]
+    allowedHeaders: ["Content-Type", "Authorization","Accept"]
 }
 app.use(cors(corsOptions))
 // const corsOptions = {
