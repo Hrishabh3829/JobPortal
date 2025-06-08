@@ -14,9 +14,9 @@ const skills = ["html", "java", "js", "express"]
 
 const isResume = true
 export const Profile = () => {
-    
-    const [open,setOpen]=useState(false)
-    
+
+    const [open, setOpen] = useState(false)
+
 
     return (
         <div >
@@ -33,7 +33,7 @@ export const Profile = () => {
                         <h1 className='font-medium text-xl'>Full Name</h1>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate</p>
                     </div>
-                    <Button onClick={()=> setOpen(true)}  className="text-right -mt-7 mx-30 rounded-xl hover:bg-sky-200" variant="outline">
+                    <Button onClick={() => setOpen(true)} className="text-right -mt-7 mx-30 rounded-xl hover:bg-sky-200" variant="outline">
                         <Pen />
                     </Button>
                 </div>
@@ -73,7 +73,7 @@ export const Profile = () => {
                 <AppliedJobTable />
             </div>
 
-            <UpdateProfileDialog open={open} setOpen={setOpen}/>
+            <UpdateProfileDialog open={open} setOpen={setOpen} />
 
         </div>
     )

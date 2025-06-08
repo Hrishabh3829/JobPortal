@@ -10,7 +10,7 @@ export const JobDescription = () => {
             <div className='flex items-center justify-between'>
                 <div>
                     <div className='my-2'>
-                    <h1 className='font-bold text-xl'>Frontend Developer</h1>
+                        <h1 className='font-bold text-xl'>Frontend Developer</h1>
                     </div>
                     <div className='flex flex-wrap gap-2'>
                         <Badge className='text-blue-700 font-bold' variant='ghost'>12 Positions</Badge>
