@@ -24,7 +24,7 @@ export const Profile = () => {
         <div >
             <NavbarOne />
 
-            <div className='max-w-4xl mx-30 bg-white border border-gray-200 rounded-2xl my-7 p-8'>
+            <div className='max-w-4xl mx-auto bg-white border border-gray-200 rounded-2xl my-7 p-8'>
                 <div className='flex items-center gap-4'>
                     <Avatar className='h-24 w-24'>
                         <AvatarImage
@@ -62,7 +62,7 @@ export const Profile = () => {
                     <Label className='text-md font-bold'>Resume</Label>
                     <div className='-my-2'>
                         {
-                            isResume ? <a target='blank' href='https://hrishabhgupta.me' className='text-sky-500 hover:underline cursor-pointer transform transition-transform duration-200 hover:scale-110 inline-block'>Hey</a> : <span className='font-semibold'>NA</span>
+                            isResume ? <a target='blank' href={user?.profile?.resume} className='text-sky-500 hover:underline cursor-pointer transform transition-transform duration-200 hover:scale-110 inline-block'>{user?.profile?.resumeOriginalName}</a> : <span className='font-semibold'>NA</span>
                         }
                     </div>
                 </div>

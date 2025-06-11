@@ -52,7 +52,7 @@ export const Login = () => {
       console.log(error)
       toast.error(error.response.data.message)
     } finally {
-      (setLoading(false))
+      dispatch(setLoading(false))
     }
   }
 

@@ -4,7 +4,7 @@ import { Badge } from './ui/badge'
 
 export const AppliedJobTable = () => {
     return (
-        <div>
+        <div className='mx-auto'>
             <Table>
                 <TableCaption>
                     List of your Applied Jobs

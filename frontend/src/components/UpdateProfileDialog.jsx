@@ -43,7 +43,7 @@ export const UpdateProfileDialog = ({ open, setOpen }) => {
 
         const formData = new FormData()
         formData.append("fullname", input.fullname)
-        // formData.append("email", input.email)
+        formData.append("email", input.email)
         
         formData.append("phoneNumber", input.phoneNumber)
         formData.append("bio", input.bio)
@@ -54,6 +54,7 @@ export const UpdateProfileDialog = ({ open, setOpen }) => {
 
         // console.log(formData.get('fullname'))
         try {
+            setLoading(true)
             const res = await axios.post(`${USER_API_END_POINT}/profile/update`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'

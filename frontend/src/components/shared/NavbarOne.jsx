@@ -1,10 +1,14 @@
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button"
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar"
 import { LogIn, LogOut, User2 } from "lucide-react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { toast } from "sonner"
+import axios from "axios"
+import { USER_API_END_POINT } from "@/utils/constant"
+import { setUser } from "../redux/authSlice"
 
 
 
@@ -13,6 +17,23 @@ import { useSelector } from "react-redux"
 const NavbarOne = () => {
 
     const {user}=useSelector(store=>store.auth)
+    const dispatch =useDispatch()
+    const navigate = useNavigate()
+    const logoutHandler= async () =>{
+        try {
+            const res =await axios.get(`${USER_API_END_POINT}/logout`,{withCredentials:true})
+            if(res.data.success){
+                dispatch(setUser(null))
+                navigate("/");
+                toast.success(res.data.message)
+
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error(error.response.data.message)
+
+        }
+    }
 
     return (
         <div className='bg-white'>
@@ -56,7 +77,7 @@ const NavbarOne = () => {
                                 <PopoverTrigger asChild>
                                     <div className="cursor-pointer">
                                         <Avatar className="w-8 h-8">
-                                            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" className="w-8 h-8 rounded-full" />
+                                            <AvatarImage src={user?.profile?.profilePhoto} alt="@shadcn" className="w-8 h-8 rounded-full" />
                                         </Avatar>
                                     </div>
                                 </PopoverTrigger>
@@ -64,14 +85,14 @@ const NavbarOne = () => {
                                     <div className="flex gap-3">
                                         <Avatar className="w-8 h-8">
                                             <AvatarImage
-                                                src="https://github.com/shadcn.png"
+                                                src={user?.profile?.profilePhoto}
                                                 alt="@shadcn"
                                                 className="w-8 h-8 rounded-full"
                                             />
                                         </Avatar>
                                         <div className="space-y-1">
-                                            <h4 className="font-medium">Hrishabh Gupta</h4>
-                                            <p className="text-sm text-muted-foreground">cloud developer</p>
+                                            <h4 className="font-medium">{user?.fullname}</h4>
+                                            <p className="text-sm text-muted-foreground">{user?.profile?.bio}</p>
                                             <div className="flex flex-col gap-3 my-2">
                                                 <div className="flex flex-row gap-6">
                                                     <User2 className="flex" />
@@ -80,7 +101,7 @@ const NavbarOne = () => {
                                                 </div>
                                                 <div className="flex flex-row gap-6">
                                                     <LogOut className="flex" />
-                                                    <Button variant="link" className="p-0 h-auto text-sm">Logout</Button>
+                                                    <Button onClick={logoutHandler} variant="link" className="p-0 h-auto text-sm">Logout</Button>
                                                 </div>
                                             </div>
 
