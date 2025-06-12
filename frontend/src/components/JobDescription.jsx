@@ -1,22 +1,45 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Badge } from './ui/badge'
 import { Button } from './ui/button'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import { JOB_API_END_POINT } from '@/utils/constant'
+import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from '@/utils/constant'
 import { setSingleJob } from './redux/jobSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'sonner'
+
 // import store from './redux/store'
+
 
 export const JobDescription = () => {
     const { singleJob } = useSelector(store => store.job)
     const { user } = useSelector(store => store.auth)
-    const isApplied = singleJob?.applications?.some(application => application.applicant == user?._id) || false
+    const isInitiallyApplied = singleJob?.applications?.some(application => application.applicant == user?._id) || false
+
+    const [isApplied, setIsApplied] = useState(isInitiallyApplied)
+
 
     const params = useParams()
     const jobId = params.id;
     // useGetSingleJob(jobId)//custom hook for single job
     const dispatch = useDispatch()
+
+    const applyJobHandler = async () => {
+        try {
+            const res = await axios.get(`${APPLICATION_API_END_POINT}/apply/${jobId}`, { withCredentials: true });
+            console.log(res.data)
+            if (res.data.success) {
+                setIsApplied(true)//update the local state
+                const updatedSingleJob={...singleJob,applications:[...singleJob.applications, {applicant:user?._id}]}
+                dispatch(setSingleJob(updatedSingleJob))//helps to real time update 
+                toast.success(res.data.message)
+                // dispatch(setSingleJob)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error(error.response.data.message)
+        }
+    }
 
     useEffect(() => {
         const fetchSingleJob = async () => {
@@ -24,6 +47,7 @@ export const JobDescription = () => {
                 const res = await axios.get(`${JOB_API_END_POINT}/get/${jobId}`, { withCredentials: true });
                 if (res.data.success) {
                     dispatch(setSingleJob(res.data.job))
+                    setIsApplied(res.data.job.applications.some(application=>application.applicant=== user?._id))
 
                 }
 
@@ -47,7 +71,7 @@ export const JobDescription = () => {
                         <Badge className='text-blue-700 font-bold' variant='ghost'>{singleJob?.salary}LPA</Badge>
                     </div>
                 </div>
-                <Button disabled={isApplied}
+                <Button onClick={isApplied ? null : applyJobHandler} disabled={isApplied}
                     className={`
                                 rounded-lg px-4 py-2 text-white font-medium transition-colors duration-200
                                         ${isApplied
