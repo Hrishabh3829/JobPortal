@@ -16,13 +16,13 @@ import { setUser } from "../redux/authSlice"
 
 const NavbarOne = () => {
 
-    const {user}=useSelector(store=>store.auth)
-    const dispatch =useDispatch()
+    const { user } = useSelector(store => store.auth)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
-    const logoutHandler= async () =>{
+    const logoutHandler = async () => {
         try {
-            const res =await axios.get(`${USER_API_END_POINT}/logout`,{withCredentials:true})
-            if(res.data.success){
+            const res = await axios.get(`${USER_API_END_POINT}/logout`, { withCredentials: true })
+            if (res.data.success) {
                 dispatch(setUser(null))
                 navigate("/");
                 toast.success(res.data.message)
@@ -47,15 +47,32 @@ const NavbarOne = () => {
                 </div>
                 <div className="flex items-center gap-12">
                     <ul className='flex font-medium items-center gap-5'>
-                        <Link to="/">
-                            <li>Home</li>
-                        </Link >
-                        <Link to="/jobs">
-                            <li>Jobs</li>
-                        </Link>
-                        <Link to="/browse">
-                            <li>Browse</li>
-                        </Link>
+                        {
+                            user && user.role === 'recruiter' ? (
+                                <>
+                                    <Link to="/admin/companies">
+                                        <li>Companies</li>
+                                    </Link >
+                                    <Link to="/admin/jobs">
+                                        <li>Jobs</li>
+                                    </Link>
+
+                                </>
+                            ) : (
+                                <>
+                                    <Link to="/">
+                                        <li>Home</li>
+                                    </Link >
+                                    <Link to="/jobs">
+                                        <li>Jobs</li>
+                                    </Link>
+                                    <Link to="/browse">
+                                        <li>Browse</li>
+                                    </Link></>
+
+                            )
+                        }
+
                     </ul>
                     {
                         !user ? (
@@ -93,12 +110,19 @@ const NavbarOne = () => {
                                         <div className="space-y-1">
                                             <h4 className="font-medium">{user?.fullname}</h4>
                                             <p className="text-sm text-muted-foreground">{user?.profile?.bio}</p>
+
                                             <div className="flex flex-col gap-3 my-2">
-                                                <div className="flex flex-row gap-6">
-                                                    <User2 className="flex" />
-                                                    <Button variant="link" className="p-0 h-auto text-sm">
-                                                        <Link to="/profile">View Profile</Link></Button>
-                                                </div>
+                                                {
+                                                    user && user.role === 'student' && (
+                                                        <div className="flex flex-row gap-6">
+                                                            <User2 className="flex" />
+                                                            <Button variant="link" className="p-0 h-auto text-sm">
+                                                                <Link to="/profile">View Profile</Link></Button>
+                                                        </div>
+
+                                                    )
+                                                }
+
                                                 <div className="flex flex-row gap-6">
                                                     <LogOut className="flex" />
                                                     <Button onClick={logoutHandler} variant="link" className="p-0 h-auto text-sm">Logout</Button>
@@ -117,7 +141,7 @@ const NavbarOne = () => {
                 </div>
             </div>
 
-        </div>
+        </div >
 
 
 

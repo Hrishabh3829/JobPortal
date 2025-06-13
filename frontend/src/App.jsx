@@ -6,6 +6,8 @@ import { Jobs } from "./components/auth/Jobs.jsx"
 import { Browse } from "./components/auth/Browse.jsx"
 import { Profile } from "./components/Profile.jsx"
 import { JobDescription } from "./components/JobDescription.jsx"
+import { Companies } from "./components/admin/Companies.jsx"
+import { ComapniesCreate } from "./components/admin/ComapniesCreate.jsx"
 
 
 
@@ -38,6 +40,15 @@ const appRouter = createBrowserRouter([
   {
     path: '/profile',
     element: <Profile />
+  },
+  //admin routes
+  {
+    path: '/admin/companies',
+    element: <Companies/>
+  },
+  {
+    path: '/admin/companies/create',
+    element: <ComapniesCreate/>
   }
 ])
 
