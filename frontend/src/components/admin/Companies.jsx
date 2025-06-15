@@ -6,7 +6,7 @@ import { CompaniesTable } from './CompaniesTable'
 import { useNavigate } from 'react-router-dom'
 
 export const Companies = () => {
-    const navigate=useNavigate()
+    const navigate = useNavigate()
     return (
         <div>
             <NavbarOne />
@@ -15,12 +15,12 @@ export const Companies = () => {
                     <Input
                         className="w-fit" placeholder="Filter by name"
                     />
-                    <Button onClick={()=> navigate("/admin/companies/create")}>
+                    <Button onClick={() => navigate("/admin/companies/create")}>
                         New Company
                     </Button>
                 </div>
                 <div>
-                <CompaniesTable/>
+                    <CompaniesTable />
                 </div>
 
             </div>
