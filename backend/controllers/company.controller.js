@@ -117,6 +117,7 @@ export const updateCompany = async (req, res) => {
 
         return res.status(200).json({
             company,
+            message: "Company registered successfully ",
             success: true
         })
 
