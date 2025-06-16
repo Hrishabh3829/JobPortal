@@ -77,69 +77,67 @@ export const CompaniesSetup = () => {
 
         })
     },[singleCompany]);
-
-
     return (
         <div>
             <NavbarOne />
-            <div className='max-w-xl mx-auto my-10'>
+            <div className='max-w-xl mx-auto my-5 md:my-10 px-4 md:px-0'>
                 <form onSubmit={submitHandler}>
-                    <div className='flex items-center gap-5 p-8'>
-
+                    <div className='flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5 p-4 sm:p-8'>
                         <Button onClick={() => navigate("/admin/companies")} className="flex items-center gap-2 text-gray-600 font-semibold" variant="outline">
                             <ArrowLeft />
                             <span>Back</span>
                         </Button>
                         <h1 className='font-bold text-xl'>Company Setup</h1>
-
                     </div>
-                    <div className='grid grid-cols-2 gap-4'>
-
+                    
+                    <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 px-4 sm:px-0'>
                         <div>
-
-                            <Label className="my-1">Company Name</Label>
+                            <Label className="my-1 block">Company Name</Label>
                             <Input
                                 type="text" name="name" value={input.name} onChange={changeEventHandler}
+                                className="w-full"
                             />
                         </div>
                         <div>
-
-                            <Label className="my-1">Description</Label>
+                            <Label className="my-1 block">Description</Label>
                             <Input
                                 type="text" name="description" value={input.description} onChange={changeEventHandler}
+                                className="w-full"
                             />
                         </div>
                         <div>
-
-                            <Label className="my-1">Website</Label>
+                            <Label className="my-1 block">Website</Label>
                             <Input
                                 type="text" name="website" value={input.website} onChange={changeEventHandler}
+                                className="w-full"
                             />
                         </div>
                         <div>
-
-                            <Label className="my-1">Location</Label>
+                            <Label className="my-1 block">Location</Label>
                             <Input
                                 type="text" name="location" value={input.location} onChange={changeEventHandler}
+                                className="w-full"
                             />
                         </div>
-                        <div>
-
-                            <Label className="my-1">Logo</Label>
+                        <div className="sm:col-span-2">
+                            <Label className="my-1 block">Logo</Label>
                             <Input
                                 type="file" accept="image/*" onChange={changeFileHandler}
+                                className="w-full"
                             />
                         </div>
                     </div>
-                    {
-                        loading ? <Button className='w-full my-4'>
-                            <Loader2 className='mr-2 h-4 w-4 animate-spin' />Please wait
-                        </Button> : <Button type="submit" className="w-full my-4">
-                            Update
-                        </Button>
-                    }
+                    
+                    <div className="px-4 sm:px-0">
+                        {
+                            loading ? <Button className='w-full my-4'>
+                                <Loader2 className='mr-2 h-4 w-4 animate-spin' />Please wait
+                            </Button> : <Button type="submit" className="w-full my-4">
+                                Update
+                            </Button>
+                        }
+                    </div>
                 </form>
-
             </div>
         </div>
     )
