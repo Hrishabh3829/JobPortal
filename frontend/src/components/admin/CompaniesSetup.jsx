@@ -9,8 +9,13 @@ import { COMPANY_API_END_POINT } from '@/utils/constant'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { useSelector } from 'react-redux'
+import { useGetCompanyById } from '@/hooks/useGetCompanyById'
 
 export const CompaniesSetup = () => {
+    const navigate = useNavigate()
+    const params = useParams()
+    useGetCompanyById(params.id)
+
     const [input, setInput] = useState({
         name: "",
         description: "",
@@ -22,9 +27,7 @@ export const CompaniesSetup = () => {
     const { singleCompany } = useSelector(store => store.company)
     const [loading, setLoading] = useState(false)
 
-    const params = useParams()
 
-    const navigate = useNavigate()
 
     const changeEventHandler = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value })
@@ -76,20 +79,20 @@ export const CompaniesSetup = () => {
             file: singleCompany.file || null
 
         })
-    },[singleCompany]);
+    }, [singleCompany]);
     return (
         <div>
             <NavbarOne />
             <div className='max-w-xl mx-auto my-5 md:my-10 px-4 md:px-0'>
+                <div className='flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5 p-4 sm:p-8'>
+                    <Button onClick={() => navigate("/admin/companies")} className="flex items-center gap-2 text-gray-600 font-semibold" variant="outline">
+                        <ArrowLeft />
+                        <span>Back</span>
+                    </Button>
+                    <h1 className='font-bold text-xl'>Company Setup</h1>
+                </div>
                 <form onSubmit={submitHandler}>
-                    <div className='flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5 p-4 sm:p-8'>
-                        <Button onClick={() => navigate("/admin/companies")} className="flex items-center gap-2 text-gray-600 font-semibold" variant="outline">
-                            <ArrowLeft />
-                            <span>Back</span>
-                        </Button>
-                        <h1 className='font-bold text-xl'>Company Setup</h1>
-                    </div>
-                    
+
                     <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 px-4 sm:px-0'>
                         <div>
                             <Label className="my-1 block">Company Name</Label>
@@ -108,7 +111,7 @@ export const CompaniesSetup = () => {
                         <div>
                             <Label className="my-1 block">Website</Label>
                             <Input
-                                type="text" name="website" value={input.website} onChange={changeEventHandler}
+                                type="url" name="website" value={input.website} onChange={changeEventHandler}
                                 className="w-full"
                             />
                         </div>
@@ -127,7 +130,7 @@ export const CompaniesSetup = () => {
                             />
                         </div>
                     </div>
-                    
+
                     <div className="px-4 sm:px-0">
                         {
                             loading ? <Button className='w-full my-4'>

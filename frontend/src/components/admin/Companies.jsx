@@ -11,19 +11,19 @@ import { searchCompanyByText } from '../redux/companySlice'
 export const Companies = () => {
 
     useGetAllCompanies()
-    const [input,setInput]=useState("")
+    const [input, setInput] = useState("")
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(searchCompanyByText(input))
-    },[input])
+    }, [input])
     return (
         <div>
             <NavbarOne />
             <div className=' max-w-6xl mx-auto my-10'>
                 <div className='flex items-center justify-between my-5'>
                     <Input
-                        className="w-fit" placeholder="Filter by name" onChange={(e)=>setInput(e.target.value)}
+                        className="w-fit" placeholder="Filter by name" onChange={(e) => setInput(e.target.value)}
                     />
                     <Button onClick={() => navigate("/admin/companies/create")}>
                         New Company
