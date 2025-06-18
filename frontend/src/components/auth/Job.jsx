@@ -31,7 +31,7 @@ export const Job = ({ job }) => {
                 <Button className="-top-0" variant="outline" size="icon">
                     <Avatar>
                         <AvatarImage
-                            src="https://cdn.mos.cms.futurecdn.net/dFH4TznAVPLvN8oYXKvhm7-1200-80.jpg.webp"
+                            src={job?.company?.logo}
                         />
                     </Avatar>
                 </Button>
