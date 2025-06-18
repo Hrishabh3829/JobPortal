@@ -4,7 +4,7 @@ import { getAdminJobs, getAllJobs, getJobById, postJob } from "../controllers/jo
 const router =express.Router()
 
 
-router.route("/post").post(isAuthenticated,postJob)
+router.route("/post").put(isAuthenticated,postJob)
 router.route("/get").get(isAuthenticated,getAllJobs)
 router.route("/get/:id").get(isAuthenticated,getJobById)
 router.route("/getadminjobs").get(isAuthenticated,getAdminJobs)
