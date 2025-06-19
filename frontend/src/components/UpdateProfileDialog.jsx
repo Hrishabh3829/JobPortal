@@ -39,12 +39,12 @@ export const UpdateProfileDialog = ({ open, setOpen }) => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        setLoading(true); 
+        setLoading(true);
 
         const formData = new FormData()
         formData.append("fullname", input.fullname)
-        formData.append("email", input.email)
-        
+        // formData.append("email", input.email)
+
         formData.append("phoneNumber", input.phoneNumber)
         formData.append("bio", input.bio)
         formData.append("skills", input.skills)
@@ -58,7 +58,7 @@ export const UpdateProfileDialog = ({ open, setOpen }) => {
             const res = await axios.post(`${USER_API_END_POINT}/profile/update`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
-                  
+
                 },
                 withCredentials: true
             })
@@ -69,10 +69,10 @@ export const UpdateProfileDialog = ({ open, setOpen }) => {
             }
         } catch (error) {
             console.log(error)
-           
+
             toast.error(error.response?.data?.message || 'An error occurred')
         } finally {
-            setLoading(false); 
+            setLoading(false);
         }
     }
 
@@ -86,66 +86,59 @@ export const UpdateProfileDialog = ({ open, setOpen }) => {
                     <div className='grid gap-4 py-4'>
                         <div className='grid grid-cols-4 items-center gap-4'>
                             <Label htmlFor="fullname">Name</Label>
-                            <Input 
-                                id="fullname" 
-                                name="fullname" 
-                                className="col-span-3" 
-                                type="text" 
-                                value={input.fullname} 
-                                onChange={changeEventhandler} 
+                            <Input
+                                id="fullname"
+                                name="fullname"
+                                className="col-span-3"
+                                type="text"
+                                value={input.fullname}
+                                onChange={changeEventhandler}
                             />
                         </div>
                         <div className='grid grid-cols-4 items-center gap-4'>
-                            <Label htmlFor="email">Email</Label>
-                            <Input 
-                                id="email" 
-                                name="email" 
-                                className="col-span-3 bg-gray-50 text-gray-800" 
-                                type="email" 
-                                value={input.email} 
-                                disabled
-                                readOnly
-                            />
+                            <Label>Email</Label>
+                            <p className='col-span-3 text-gray-700 text-sm'>{input.email}</p>
                         </div>
+
                         <div className='grid grid-cols-4 items-center gap-4'>
                             <Label htmlFor="phoneNumber">Number</Label>
-                            <Input 
-                                id="phoneNumber" 
-                                name="phoneNumber" 
-                                className="col-span-3" 
-                                value={input.phoneNumber} 
-                                onChange={changeEventhandler} 
+                            <Input
+                                id="phoneNumber"
+                                name="phoneNumber"
+                                className="col-span-3"
+                                value={input.phoneNumber}
+                                onChange={changeEventhandler}
                             />
                         </div>
                         <div className='grid grid-cols-4 items-center gap-4'>
                             <Label htmlFor="bio">Bio</Label>
-                            <Input 
-                                id="bio" 
-                                name="bio" 
-                                className="col-span-3" 
-                                value={input.bio} 
-                                onChange={changeEventhandler} 
+                            <Input
+                                id="bio"
+                                name="bio"
+                                className="col-span-3"
+                                value={input.bio}
+                                onChange={changeEventhandler}
                             />
                         </div>
                         <div className='grid grid-cols-4 items-center gap-4'>
                             <Label htmlFor="skills">Skills</Label>
-                            <Input 
-                                id="skills" 
-                                name="skills" 
-                                className="col-span-3" 
-                                value={input.skills} 
-                                onChange={changeEventhandler} 
+                            <Input
+                                id="skills"
+                                name="skills"
+                                className="col-span-3"
+                                value={input.skills}
+                                onChange={changeEventhandler}
                             />
                         </div>
                         <div className='grid grid-cols-4 items-center gap-4'>
                             <Label htmlFor="file">Resume</Label>
-                            <Input 
-                                id="file" 
-                                name="file" 
-                                type="file" 
-                                accept="application/pdf" 
-                                onChange={fileChangeHandler} 
-                                className="col-span-3" 
+                            <Input
+                                id="file"
+                                name="file"
+                                type="file"
+                                accept="application/pdf"
+                                onChange={fileChangeHandler}
+                                className="col-span-3"
                             />
                         </div>
                     </div>

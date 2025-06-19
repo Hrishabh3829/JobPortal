@@ -17,7 +17,7 @@ const isResume = true
 export const Profile = () => {
 
     const [open, setOpen] = useState(false)
-    const {user}=useSelector(store=>store.auth)
+    const { user } = useSelector(store => store.auth)
 
 
     return (
@@ -25,26 +25,40 @@ export const Profile = () => {
             <NavbarOne />
 
             <div className='max-w-4xl mx-auto bg-white border border-gray-200 rounded-2xl my-7 p-8'>
-                <div className='flex items-center gap-4'>
-                    <Avatar className='h-24 w-24'>
+                <div className='flex flex-col sm:flex-row items-center sm:items-start gap-4'>
+                    <Avatar className='h-24 w-24 rounded-full border shadow-md'>
                         <AvatarImage
-                            src='https://cdn.mos.cms.futurecdn.net/dFH4TznAVPLvN8oYXKvhm7-1200-80.jpg.webp' alt="Profile"
+                            src={user?.profile?.profilePhoto}
+                            alt="Profile"
+                            className='h-full w-full rounded-full object-cover'
                         />
                     </Avatar>
-                    <div className='flex flex-col -mt-9'>
-                        <h1 className='font-medium text-xl'>{user?.fullname}</h1>
-                        <p>{user?.profile?.bio}</p>
-                    </div>
-                    <Button onClick={() => setOpen(true)} className="text-right -mt-7 mx-30 rounded-xl hover:bg-sky-200" variant="outline">
-                        <Pen />
-                    </Button>
-                </div>
-                <div>
-                    <span className='flex gap-2 mx-10'><Mail />{user?.email}
-                        <span className='flex gap-2'><Contact />{user?.phoneNumber}</span>
-                    </span>
 
+                    <div className='flex-1 w-full'>
+                        <div className='flex justify-between items-start'>
+                            <div>
+                                <h1 className='font-semibold text-2xl'>{user?.fullname}</h1>
+                                <p className='text-gray-600 text-sm mt-1'>{user?.profile?.bio}</p>
+                            </div>
+                            <Button
+                                onClick={() => setOpen(true)}
+                                className='rounded-xl text-sm px-3 py-1 hover:bg-sky-100'
+                                variant='outline'
+                            >
+                                <Pen size={16} />
+                            </Button>
+                        </div>
+                        <div className='mt-2 text-sm text-gray-700 space-y-1'>
+                            <div className='flex items-center gap-2'>
+                                <Mail size={16} /> {user?.email}
+                            </div>
+                            <div className='flex items-center gap-2'>
+                                <Contact size={16} /> {user?.phoneNumber}
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div className='mx-10 my-2 font-semibold'>
                     <h1>Skills</h1>
                     {user?.profile?.skills.length !== 0 ? (
