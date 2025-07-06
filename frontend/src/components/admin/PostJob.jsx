@@ -38,7 +38,7 @@ export const PostJob = () => {
     const selectChangeHandler = (value) => {
         const selectedCompany = companies.find((company) => company.name.toLowerCase() === value)
         setInput({ ...input, companyId: selectedCompany._id })
-      
+
     }
 
     const submitHandler = async (e) => {
