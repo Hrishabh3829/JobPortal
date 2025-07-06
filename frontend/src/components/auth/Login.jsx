@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavbarOne from '../shared/NavbarOne'
 import { Label } from '@radix-ui/react-label'
 import { Input } from '@headlessui/react'
@@ -30,7 +30,7 @@ export const Login = () => {
 
   const dispatch = useDispatch()
 
-  const { loading } = useSelector(store => store.auth)
+  const { loading,user } = useSelector(store => store.auth)
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -56,6 +56,11 @@ export const Login = () => {
     }
   }
 
+  useEffect(()=>{
+    if(user){
+      navigate("/");
+    }
+  },[])
 
 
 

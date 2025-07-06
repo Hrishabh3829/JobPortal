@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavbarOne from '../shared/NavbarOne'
 import { Label } from '@radix-ui/react-label'
 import { Input } from '@headlessui/react'
@@ -28,7 +28,7 @@ export const Signup = () => {
 
   const navigate = useNavigate()
 
-  const {loading} = useSelector(store=>store.auth)
+  const {loading,user} = useSelector(store=>store.auth)
   const dispatch=useDispatch()
 
   const changeEventHandler = (e) => {
@@ -68,7 +68,11 @@ export const Signup = () => {
       dispatch(setLoading(false))
     }
   }
-
+  useEffect(()=>{
+      if(user){
+        navigate("/");
+      }
+    },[])
   return (
     <div>
       <NavbarOne />
