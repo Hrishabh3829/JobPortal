@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from './ui/button'
-import { AtSign, LogIn, Search } from 'lucide-react'
+import { Search } from 'lucide-react'
+import { useDispatch } from 'react-redux'
+import { setSearchedQuery } from './redux/jobSlice'
+import { useNavigate } from 'react-router-dom'
 
 export const Herosection = () => {
+  const [query, setQuery] = useState("")
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+  const searchJobHandler = () => {
+    dispatch(setSearchedQuery(query))
+    navigate("/browse")
+  }
+
+
   return (
     <div className='text-center -mt-7'>
       <div className='flex flex-col gap-5 my-10'>
@@ -17,12 +30,13 @@ export const Herosection = () => {
           <input
             type='text'
             placeholder='Start your journey'
+            onChange={(e) => setQuery(e.target.value)}
             className='outline-none border-none w-full'
           />
         </div>
-        <Button className='mx-auto rounded-t-lg'>
+        <Button onClick={searchJobHandler} className='mx-auto rounded-t-lg'>
           <Search />Search
-          
+
         </Button>
       </div>
     </div>
