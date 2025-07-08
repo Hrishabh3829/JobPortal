@@ -25,7 +25,7 @@ export const Herosection = () => {
         <h1 className=' text-5xl font-bold'>
           Search, Apply & <br /> Get your <span className='text-[#6A38C2]'>Dream Jobs</span>
         </h1>
-        <h2>e impedit ut delectus nostrum, corporis saepe. Ratione modi sapiente cupiditate sit obcaecati ab perferendis, ipsam adipisci.</h2>
+        <h2 className='text-gray-600 max-w-2xl mx-auto'>Discover thousands of opportunities with JobVista's powerful platform connecting talented professionals with leading employers worldwide.</h2>
         <div className=' flex w-[40%] shadow-lg border border-sky-300 pl-3 rounded-full items-center gap-4 mx-auto'>
           <input
             type='text'
