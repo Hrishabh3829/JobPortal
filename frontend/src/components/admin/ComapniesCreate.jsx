@@ -41,8 +41,8 @@ export const ComapniesCreate = () => {
             <div className='max-w-4xl  mx-auto '>
                 <div className='my-10'>
 
-                    <h1 className='font-bold text-2xl'>your company name</h1>
-                    <p className='text-gray-500'>What you would like to give the company name . you can chnage this later</p>
+                    <h1 className='font-bold text-2xl'>Your Company Name</h1>
+                    <p className='text-gray-500'>Enter your organization's name. You can update this information later if needed.</p>
                 </div>
                 <Label>Company Name</Label>
                 <Input type="text" className="my-2" placeholder="Google,Microsoft,etc" onChange={(e) => setCompanyName(e.target.value)} />
