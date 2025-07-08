@@ -13,6 +13,7 @@ import { AdminJob } from "./components/admin/AdminJob.jsx"
 import { PostJob } from "./components/admin/PostJob.jsx"
 import { Applicants } from "./components/admin/Applicants.jsx"
 import ProtectedRoute from "./components/admin/ProtectedRoute.jsx"
+import { About } from "./components/About.jsx"
 
 
 
@@ -45,6 +46,10 @@ const appRouter = createBrowserRouter([
   {
     path: '/profile',
     element: <Profile />
+  },
+  {
+    path: '/about',
+    element: <About />
   },
   //admin routes
   {

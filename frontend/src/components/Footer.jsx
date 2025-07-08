@@ -16,10 +16,12 @@ export const Footer = () => {
         <div>
           <h2 className="text-lg font-semibold text-white mb-2">Explore</h2>
           <ul className="space-y-2 text-sm">
-            {/* <li><Link to="/jobs" className="hover:underline">Jobs</Link></li>
+            <li><Link to="/jobs" className="hover:underline">Jobs</Link></li>
             <li><Link to="/about" className="hover:underline">About</Link></li>
-            <li><Link to="/contact" className="hover:underline">Contact</Link></li> */}
-            <li><Link to="/login" className="hover:underline">Login</Link></li>
+            <li><Link to="/browse" className="hover:underline">Browse</Link></li>
+            {/* <li><Link to="/" className="hover:underline">Logout</Link></li> */}
+            {/* <li><Link to="/contact" className="hover:underline">Contact</Link></li> */}
+            {/* <li><Link to="/login" className="hover:underline">Login</Link></li> */}
           </ul>
         </div>
 
