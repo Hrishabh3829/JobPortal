@@ -63,8 +63,13 @@ export const UpdateProfileDialog = ({ open, setOpen }) => {
                 withCredentials: true
             })
             if (res.data.success) {
-                dispatch(setUser(res.data.user))
-                toast.success(res.data.message)
+                // Make sure email is preserved in the user object
+                const updatedUser = {
+                    ...res.data.user,
+                    email: user.email // Preserve the email from current user state
+                };
+                dispatch(setUser(updatedUser));
+                toast.success(res.data.message);
                 setOpen(false);
             }
         } catch (error) {

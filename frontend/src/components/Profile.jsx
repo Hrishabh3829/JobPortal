@@ -20,6 +20,9 @@ export const Profile = () => {
 
     const [open, setOpen] = useState(false)
     const { user } = useSelector(store => store.auth)
+    
+    // Ensure email is always available for display
+    const userEmail = user?.email || ''
 
 
     return (
@@ -52,7 +55,7 @@ export const Profile = () => {
                         </div>
                         <div className='mt-2 text-sm text-gray-700 space-y-1'>
                             <div className='flex items-center gap-2'>
-                                <Mail size={16} /> {user?.email}
+                                <Mail size={16} /> <span >{userEmail}</span>
                             </div>
                             <div className='flex items-center gap-2'>
                                 <Contact size={16} /> {user?.phoneNumber}
