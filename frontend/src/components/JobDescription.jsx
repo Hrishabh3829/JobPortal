@@ -20,6 +20,16 @@ export const JobDescription = () => {
     const navigate = useNavigate()
 
     const [isApplied, setIsApplied] = useState(isInitiallyApplied)
+    
+    // Redirect to login if not authenticated
+    useEffect(() => {
+        if (!user) {
+            toast.error("Please login to view job details and apply", {
+                description: "You need to be logged in to access this page"
+            })
+            navigate('/login', { state: { from: window.location.pathname }})
+        }
+    }, [user, navigate])
 
     // Animation variants
     const containerVariants = {

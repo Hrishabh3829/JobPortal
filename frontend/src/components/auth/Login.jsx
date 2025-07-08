@@ -4,7 +4,7 @@ import { Label } from '@radix-ui/react-label'
 import { Input } from '@headlessui/react'
 import { RadioGroup } from '../ui/radio-group'
 import { Button } from '../ui/button'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { USER_API_END_POINT } from '@/utils/constant'
 import axios from 'axios';
@@ -27,6 +27,8 @@ export const Login = () => {
     setInput({ ...input, [e.target.name]: e.target.value })
   }
   const navigate = useNavigate();
+  const location = useLocation();
+  const redirectTo = location.state?.from || "/";
 
   const dispatch = useDispatch()
 
@@ -45,8 +47,9 @@ export const Login = () => {
       console.log(res.data.success)
       if (res.data.success) {
         dispatch(setUser(res.data.user))
-        navigate("/");
         toast.success(res.data.message)
+        // Redirect to the page user was trying to access before login
+        navigate(redirectTo);
       }
     } catch (error) {
       console.log(error)
@@ -56,11 +59,11 @@ export const Login = () => {
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     if(user){
-      navigate("/");
+      navigate(redirectTo);
     }
-  },[])
+  }, [user, navigate, redirectTo])
 
 
 
