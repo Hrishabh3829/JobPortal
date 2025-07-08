@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { setSearchedQuery } from './redux/jobSlice'
 import { useNavigate } from 'react-router-dom'
 
-export const Herosection = () => {
+export const HeroSection = () => {
   const [query, setQuery] = useState("")
   const dispatch = useDispatch();
   const navigate = useNavigate()
