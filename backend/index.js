@@ -18,15 +18,16 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 // Configure CORS based on environment
 const corsOptions = {
-    origin: process.env.NODE_ENV === "production" 
-        ? [process.env.FRONTEND_URL || "https://your-production-frontend-url.com"] 
-        : [
-            "https://rn8l9kd4-5173.inc1.devtunnels.ms",
-            
-          ],
+    origin: [
+        "https://jobportal-frontend-1mi2.onrender.com",
+        "https://job-portal-omega-tawny.vercel.app",
+        "https://job-portal-git-main-2200032748cseh-3416s-projects.vercel.app",
+        "https://job-portal-1e1vb2yfk-2200032748cseh-3416s-projects.vercel.app",
+        "http://localhost:5173"
+    ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "Accept"]
+    allowedHeaders: ["Content-Type", "Authorization","Accept"]
 }
 app.use(cors(corsOptions))
 
