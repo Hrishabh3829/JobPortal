@@ -41,9 +41,48 @@ JWT_SECRET=your_jwt_secret_key</code></pre>
     <li><strong>Authentication:</strong> JWT</li>
   </ul>
 
+  <h2>Deployment Instructions</h2>
+  <p>Follow these steps to deploy your JobVista application to production:</p>
+
+  <h3>Backend Deployment</h3>
+  <ol>
+    <li><strong>Environment Setup:</strong> Copy <code>.env.example</code> to <code>.env</code> and fill in the production values</li>
+    <li><strong>Database:</strong> Ensure your MongoDB Atlas cluster is properly configured with network access</li>
+    <li><strong>Hosting Options:</strong>
+      <ul>
+        <li><strong>Render:</strong> Connect your GitHub repository and use the following build command: <code>cd backend && npm install</code> and start command: <code>cd backend && npm start</code></li>
+        <li><strong>Vercel:</strong> Use the Vercel CLI and configure using <code>vercel.json</code></li>
+        <li><strong>Railway/Heroku:</strong> Configure using their respective CLI tools or dashboard</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h3>Frontend Deployment</h3>
+  <ol>
+    <li><strong>Environment Setup:</strong> Create <code>.env.production</code> with your backend API URL:
+      <pre><code>VITE_API_BASE_URL=https://your-backend-url.com/api/v1</code></pre>
+    </li>
+    <li><strong>Build the App:</strong> Run <code>npm run build</code> to generate optimized production files</li>
+    <li><strong>Hosting Options:</strong>
+      <ul>
+        <li><strong>Vercel:</strong> Connect your GitHub repository or use the Vercel CLI</li>
+        <li><strong>Netlify:</strong> Connect your repository or drag and drop the <code>dist</code> folder</li>
+        <li><strong>GitHub Pages:</strong> Configure with proper base path in <code>vite.config.js</code></li>
+      </ul>
+    </li>
+  </ol>
+
+  <h3>Important Deployment Considerations</h3>
+  <ul>
+    <li>Set <code>NODE_ENV=production</code> in your backend environment</li>
+    <li>Configure CORS to accept requests only from your frontend domain</li>
+    <li>Set up proper error logging and monitoring</li>
+    <li>Consider using a CI/CD pipeline for automated deployments</li>
+    <li>Set up SSL for secure HTTPS connections</li>
+  </ul>
+
   <h2>Author</h2>
   <p>Developed by <strong>[Hrishabh3829]</strong>. Feel free to fork, contribute, and star ⭐ the repo if you find it useful!</p>
-
 
 </body>
 </html>
