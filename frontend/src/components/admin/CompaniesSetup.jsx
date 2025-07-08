@@ -10,6 +10,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { useSelector } from 'react-redux'
 import { useGetCompanyById } from '@/hooks/useGetCompanyById'
+import { motion } from 'framer-motion'
 
 export const CompaniesSetup = () => {
     const navigate = useNavigate()
@@ -26,6 +27,30 @@ export const CompaniesSetup = () => {
 
     const { singleCompany } = useSelector(store => store.company)
     const [loading, setLoading] = useState(false)
+    
+    // Animation variants
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.3
+            }
+        }
+    }
+    
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: { 
+            y: 0, 
+            opacity: 1,
+            transition: {
+                type: "spring",
+                stiffness: 100
+            }
+        }
+    }
 
 
 
@@ -83,65 +108,118 @@ export const CompaniesSetup = () => {
     return (
         <div>
             <NavbarOne />
-            <div className='max-w-xl mx-auto my-5 md:my-10 px-4 md:px-0'>
-                <div className='flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5 p-4 sm:p-8'>
-                    <Button onClick={() => navigate("/admin/companies")} className="flex items-center gap-2 text-gray-600 font-semibold" variant="outline">
-                        <ArrowLeft />
-                        <span>Back</span>
-                    </Button>
-                    <h1 className='font-bold text-xl'>Company Setup</h1>
-                </div>
-                <form onSubmit={submitHandler}>
-
-                    <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 px-4 sm:px-0'>
-                        <div>
+            <motion.div 
+                className='max-w-xl mx-auto my-5 md:my-10 px-4 md:px-0'
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 15
+                }}
+            >
+                <motion.div 
+                    className='flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5 p-4 sm:p-8'
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                >
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                        <Button 
+                            onClick={() => navigate("/admin/companies")} 
+                            className="flex items-center gap-2 text-gray-600 font-semibold" 
+                            variant="outline"
+                        >
+                            <ArrowLeft />
+                            <span>Back</span>
+                        </Button>
+                    </motion.div>
+                    <motion.h1 
+                        className='font-bold text-xl'
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.3, type: "spring" }}
+                    >
+                        Company Setup
+                    </motion.h1>
+                </motion.div>
+                <motion.form 
+                    onSubmit={submitHandler}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <motion.div 
+                        className='grid grid-cols-1 sm:grid-cols-2 gap-4 px-4 sm:px-0'
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
+                        <motion.div variants={itemVariants} whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
                             <Label className="my-1 block">Company Name</Label>
                             <Input
                                 type="text" name="name" value={input.name} onChange={changeEventHandler}
                                 className="w-full"
                             />
-                        </div>
-                        <div>
+                        </motion.div>
+                        <motion.div variants={itemVariants} whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
                             <Label className="my-1 block">Description</Label>
                             <Input
                                 type="text" name="description" value={input.description} onChange={changeEventHandler}
                                 className="w-full"
                             />
-                        </div>
-                        <div>
+                        </motion.div>
+                        <motion.div variants={itemVariants} whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
                             <Label className="my-1 block">Website</Label>
                             <Input
                                 type="url" name="website" value={input.website} onChange={changeEventHandler}
                                 className="w-full"
                             />
-                        </div>
-                        <div>
+                        </motion.div>
+                        <motion.div variants={itemVariants} whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
                             <Label className="my-1 block">Location</Label>
                             <Input
                                 type="text" name="location" value={input.location} onChange={changeEventHandler}
                                 className="w-full"
                             />
-                        </div>
-                        <div className="sm:col-span-2">
+                        </motion.div>
+                        <motion.div 
+                            className="sm:col-span-2"
+                            variants={itemVariants} 
+                            whileHover={{ scale: 1.02 }} 
+                            transition={{ type: "spring", stiffness: 400 }}
+                        >
                             <Label className="my-1 block">Logo</Label>
                             <Input
                                 type="file" accept="image/*" onChange={changeFileHandler}
                                 className="w-full"
                             />
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
 
-                    <div className="px-4 sm:px-0">
+                    <motion.div 
+                        className="px-4 sm:px-0"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.8 }}
+                    >
                         {
-                            loading ? <Button className='w-full my-4'>
+                            loading ? 
+                            <Button className='w-full my-4'>
                                 <Loader2 className='mr-2 h-4 w-4 animate-spin' />Please wait
-                            </Button> : <Button type="submit" className="w-full my-4">
-                                Update
-                            </Button>
+                            </Button> : 
+                            <motion.div
+                                whileHover={{ scale: 1.03 }}
+                                whileTap={{ scale: 0.97 }}
+                            >
+                                <Button type="submit" className="w-full my-4">
+                                    Update
+                                </Button>
+                            </motion.div>
                         }
-                    </div>
-                </form>
-            </div>
+                    </motion.div>
+                </motion.form>
+            </motion.div>
         </div>
     )
 }
