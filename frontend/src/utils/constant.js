@@ -1,5 +1,5 @@
 // Get the base API URL from environment or fall back to localhost for development
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/api/v1";
+const API_BASE_URL = "http://localhost:8000/api/v1";
 
 // Export the endpoints using the base URL
 export const USER_API_END_POINT = `${API_BASE_URL}/user`;

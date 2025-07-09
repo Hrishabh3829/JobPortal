@@ -19,10 +19,7 @@ app.use(cookieParser())
 // Configure CORS based on environment
 const corsOptions = {
     origin: [
-        "https://jobportal-frontend-1mi2.onrender.com",
-        "https://job-portal-omega-tawny.vercel.app",
-        "https://job-portal-git-main-2200032748cseh-3416s-projects.vercel.app",
-        "https://job-portal-1e1vb2yfk-2200032748cseh-3416s-projects.vercel.app",
+        
         "http://localhost:5173"
     ],
     credentials: true,
