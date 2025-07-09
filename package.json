@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon backend/index.js",
     "start": "nodemon backend/index.js",
-    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "build": "npm install && npm install --prefix frontend --include=dev && npm run build --prefix frontend",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
